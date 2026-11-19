@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">STUDENT<span>HUB</span></div>
+        <div class="profile">👨‍🎓</div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <main>
+
+        <section class="welcome glass">
+            <p class="subtitle">YOUR LEARNING SPACE</p>
+            <h1 id="dashboardGreeting">Hello, Student! 👋</h1>
+            <p>Ready to achieve something today?</p>
+
+            <div class="progress">
+               <div class="progress-fill" id="dailyGoalFill"></div>
+            </div>
+
+            <small id="dailyGoalText">Daily study goal · 0%</small>
+        </section>
+
+        <h2>Explore Dashboard</h2>
+
+        <section class="grid">
+
+            
+<div class="card glass" onclick="window.location.href='subjects/subjects.html'" style="cursor: pointer;">
+    <div class="icon">📚</div>
+    <h3>My Subjects</h3>
+    <p>Explore your subjects</p>
+</div>
+
+
+            
+<div class="card glass" onclick="window.location.href='planner/planner.html'" style="cursor: pointer;">
+    <div class="icon">📅</div>
+    <h3>Study Planner</h3>
+    <p>Organise your study schedule</p>
+</div>
+
+
+            <div class="card glass" onclick="openNotes()">
+                <div class="icon">📝</div>
+                <h3>My Notes</h3>
+                <p>Upload and organize notes</p>
+            </div>
+
+           
+<div class="card glass" onclick="window.location.href='todo/todo.html'" style="cursor: pointer;">
+    <div class="icon">✅</div>
+    <h3>To-Do List</h3>
+    <p>Track your daily tasks</p>
+</div>
+
+
+            
+<div class="card glass" onclick="window.location.href='exams/exams.html'" style="cursor: pointer;">
+    <div class="icon">📝</div>
+    <h3>Exam Zone</h3>
+    <p>Manage your exams and preparation</p>
+</div>
+
+
+            
+<div class="card glass" onclick="window.location.href='progress/progress.html'" style="cursor: pointer;">
+    <div class="icon">📊</div>
+    <h3>My Progress</h3>
+    <p>Track your learning achievements</p>
+</div>
+
+
+        </section>
+
+        <section class="quote glass">
+            <p>✨ DAILY MOTIVATION</p>
+            <h3>
+                "Small steps every day lead to big achievements."
+            </h3>
+        </section>
+
+    </main>
+
+    <!-- NOTES LIBRARY -->
+    <section id="notesPage" class="notes-page" hidden>
+
+        <div class="notes-heading">
+            <p class="subtitle">YOUR PERSONAL LIBRARY</p>
+            <h2>📚 My Notes Library</h2>
+            <p>Organize your learning materials.</p>
+        </div>
+
+        <!-- UPLOAD PANEL -->
+        <div class="upload-panel glass">
+
+            <h3>📤 Upload New Notes</h3>
+
+            <label for="subjectSelect">Choose Subject</label>
+
+            <select id="subjectSelect">
+                <option value="Mathematics">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Biology">Biology</option>
+                <option value="English">English</option>
+                <option value="Social Studies">Social Studies</option>
+                <option value="Telugu">Telugu</option>
+            </select>
+
+            <label for="chapterInput">Chapter Name</label>
+
+            <input
+                type="text"
+                id="chapterInput"
+                placeholder="Example: Algebra"
+            >
+
+            <label for="noteFile" class="upload-btn">
+                📤 Select Files to Upload
+            </label>
+
+            <input
+                type="file"
+                id="noteFile"
+                accept=".pdf,.jpg,.jpeg,.png,.webp,.gif,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip"
+                multiple
+                hidden
+            >
+
+            <p class="upload-info">
+                PDF, Images, Word, PowerPoint, Excel, TXT and ZIP
+            </p>
+
+        </div>
+
+        <!-- SEARCH -->
+        <div class="search-panel">
+            <input
+                type="text"
+                id="searchNotes"
+                placeholder="🔍 Search subjects, chapters or notes..."
+            >
+        </div>
+
+        <!-- FOLDER NAVIGATION -->
+        <div class="library-panel glass">
+
+            <h3>📂 Your Folders</h3>
+
+            <div id="folderBreadcrumb" class="breadcrumb"></div>
+
+            <div id="notesList">
+                <p>Loading your library...</p>
+            </div>
+
+        </div>
+
+        <!-- BACK BUTTON -->
+        <button class="back-button" onclick="closeNotes()">
+            ← Back to Dashboard
+        </button>
+
+    </section>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav glass">
+
+
+<nav class="bottom-nav glass">
+
+    <div onclick="window.location.href='index.html'">
+        🏠
+        <small>Home</small>
+    </div>
+
+    <div onclick="window.location.href='subjects/subjects.html'">
+        📚
+        <small>Subjects</small>
+    </div>
+
+    <div onclick="window.location.href='planner/planner.html'">
+        📅
+        <small>Planner</small>
+    </div>
+
+    <div onclick="window.location.href='profile/profile.html'">
+    👤
+    <small>Profile</small>
+</div>
+</nav>
+
+    </nav>
+
+<!-- PDF READER MODAL -->
+
+<div id="pdfReader" class="pdf-reader" hidden>
+
+    <div class="pdf-toolbar">
+
+        <h3>📖 Student Hub PDF Reader</h3>
+
+        <button onclick="closePDFReader()">
+            ✖ Close
+        </button>
+
+    </div>
+
+    <div class="pdf-content">
+
+        <iframe
+            id="pdfFrame"
+            title="PDF Document Reader"
+        ></iframe>
+
+    </div>
+
+</div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
